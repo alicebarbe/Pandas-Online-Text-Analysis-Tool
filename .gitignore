@@ -1,0 +1,9 @@
+.ipynb_checkpoints/
+.csv
+.directory
+data/
+config/
+__pycache__/
+debug.log
+temp-plot.html
+test.py
