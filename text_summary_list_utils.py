@@ -7,14 +7,17 @@ Created on Fri Apr 17 16:19:43 2020
 
 from text_summary import TextSummary
 
+
 def create_list_of_summaries(data_groups):
-    """Create a list of text summaries from a dataframe groupby object
-    Arguments:
-        data_groups (Pandas.GroupBy):
-            groupby object with data grouped by time
+    """
+    Create a list of text summaries from a dataframe groupby object.
+
+    Args:
+        data_groups (Pandas.GroupBy): groupby object with data grouped by time
+
     Returns:
-        text_summary_list (list of TextSummary):
-            list of TextSummary objects for each bin
+        text_summary_list (list of TextSummary): list of TextSummary objects for each bin
+
     """
     text_summary_list = []
     for i in range(len(data_groups.size())):
@@ -31,8 +34,17 @@ def create_list_of_summaries(data_groups):
 
 
 def create_list_of_summaries_by_person(data_groups, names):
-    """Same as create_list_of_summaries except divided by person - so one
+    """
+    Same as create_list_of_summaries except divided by person - so one
     list per person packaged together in a big list.
+
+    Args:
+        data_groups (Pandas.GroupBy): groupby object with data grouped by time
+        names (list of str): names of senders
+
+    Returns:
+        text_summary_list_of_lists (list): [list of TextSummary objects for each bin]
+
     """
     text_summary_list_of_lists = []
     for name in names:
@@ -54,19 +66,18 @@ def create_list_of_summaries_by_person(data_groups, names):
 
 
 def get_summary_attribute_list(text_summary_list, attribute, key):
-    """Get a list of a dictionary value in an attribute from a list of
-    TextSummaries
-    Arguments:
-        text_summary_list (list of TextSummary):
-            list of TextSummary objects
-        attribute (str):
-            string of the dictionary attribute name
-        key (str):
-            string of the dictionary key value to get
+    """
+    Get a list of a dictionary value in an attribute from a list of TextSummaries.
+
+    Args:
+        text_summary_list (list of TextSummary): list of TextSummary objects
+        attribute (str): string of the dictionary attribute name
+        key (str): string of the dictionary key value to get
+
     Return:
-        attribute_list (list):
-            list of the values assigned to *key* in *attribute* for each
-            TextSummary
+        attribute_list (list): list of the values assigned to *key* in
+        *attribute* for each TextSummary
+
     """
     attribute_list = []
     for text_summary in text_summary_list:
@@ -75,14 +86,17 @@ def get_summary_attribute_list(text_summary_list, attribute, key):
 
 
 def make_attribute_dict(summary_list):
-    """Returns a list of the things to plot given a list of textSummaries.
+    """
+    Return a list of the things to plot given a list of textSummaries.
     Add new things to plot per bins here!
-    Arguments:
+
+    Args:
         summary_list (list of TextSummary)
+
     Returns:
-        attribute_dict (dictionary of lists of ints/floats):
-            key = title of the plot
-            value = list of the values
+        attribute_dict (dictionary of lists of ints/floats): {key = title of the plot,
+        value = list of the values}
+
     """
     attribute_dict = dict()
     attribute_dict['Number of Texts'] = \
@@ -99,11 +113,13 @@ def make_attribute_dict(summary_list):
         get_summary_attribute_list(summary_list, 'prop', 'percent_emote')
     attribute_dict['Verbosity'] = \
         get_summary_attribute_list(summary_list, 'prop', 'verbosity')
-        
+
     return attribute_dict
 
+
 def make_occurrence_dict(summary_list, token_list):
-    """Returns a dictionary of the list of occurrence of tokens for each TextSummary
+    """
+    Returns a dictionary of the list of occurrence of tokens for each TextSummary
     in a list of TextSummaries.
 
     Args:
@@ -111,7 +127,8 @@ def make_occurrence_dict(summary_list, token_list):
         token_list (list): list of tokens, strings, to search for.
 
     Returns:
-        occurrence_dict (dict): {"token": [occurrence of token in each textSummary}.
+        occurrence_dict (dict): {"token": [occurrence of token in each textSummary]}
+
     """
     occurrence_dict = dict()
     for token in token_list:

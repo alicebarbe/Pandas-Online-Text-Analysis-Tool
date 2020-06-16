@@ -8,13 +8,13 @@ Created on Mon Aug  5 19:56:19 2019
 import time
 import string
 import pandas as pd
+import numpy as np
+from rake_nltk import Rake
 from string_utils import count_word_occurrences, get_words, \
     remove_emotes, count_emotes, count_emote_occurrences
 from file_utils import convert_raw_csv_types
 from stat_utils import ratio_conf_bounds
-from rake_nltk import Rake
-import numpy as np
-from config import *
+from config import LOADPATH, COLORS
 
 class TextSummary:
     """A representation of the basic statistics of a set of texts.
@@ -39,13 +39,13 @@ class TextSummary:
     def __init__(self, data=None):
         """Create a new TextSummary from the texts dataframe.
 
-        Arguments:
-            data (Pandas.DataFrame): texts dataframe, containing a 'body'
-            column.
+        Args:
+            data (Pandas.DataFrame): texts dataframe, containing a 'body' column.
+
         """
         if data is None or data.empty:
             self.count = {'texts': 0, 'words': 0, 'chars': 0, 'spaces': 0,
-                      'letters': 0, 'digits': 0, 'emotes': 0, 'punct': 0}
+                          'letters': 0, 'digits': 0, 'emotes': 0, 'punct': 0}
             self.prop = {'words_per_text': float('nan'), 'laziness': float('nan'),
                          'percent_emote': float('nan'), 'verbosity': float('nan')}
             self.per_text_lists = {'words_per_text': [], 'chars_per_text': [],
@@ -56,7 +56,7 @@ class TextSummary:
         else:
             # each dict has key name and value thing
             self.count = dict()  # for scalar raw count statistics
-            self.prop = dict() # for statistics that are ratios of two counts
+            self.prop = dict()  # for statistics that are ratios of two counts
             self.per_text_lists = dict()
             self.occurrence_dicts = dict()
             self.data = data
@@ -64,17 +64,15 @@ class TextSummary:
             # convert the timestamps to a friendly format - this syntax avoids
             # setting a value on a copy of a slice from a dataframe and runs
             # significantly faster
-            self.data = self.data.assign(
-                    date_sent=self.data['date_sent']\
-                                  .astype('datetime64[ns]'))
+            self.data = self.data.assign(date_sent=self.data['date_sent']
+                                                       .astype('datetime64[ns]'))
 
             # combine all text bodies into a single string
             raw_text = '\n'.join(data['body'].tolist())
 
             # get cleaned text - create a new column of text body without emotes
             self.data = self.data.assign(
-                body_without_emotes=self.data['body'].map(
-                    lambda text: remove_emotes(text)))
+                body_without_emotes=self.data['body'].map(remove_emotes))
 
             # get text separated into words - create another new column
             self.data = self.data.assign(
@@ -117,9 +115,9 @@ class TextSummary:
                                                      .tolist()
 
     def set_occurrence_dicts(self, raw_text, emote_free_text):
-        """Fill a dictionary with the occurrences of each word and each emote
+        """Fill a dictionary with the occurrences of each word and each emote.
 
-        Arguments:
+        Args:
             raw_text (string): the original concatenated text
             emote_free_text (string): the emote/emoji-free concatenated text
         """
@@ -128,9 +126,9 @@ class TextSummary:
         self.occurrence_dicts['words'] = count_word_occurrences(emote_free_text)
 
     def set_counts(self, raw_text, emote_free_text):
-        """Set the count statistics
+        """Set the count statistics.
 
-        Arguments:
+        Args:
             raw_text (string): the original concatenated text
             emote_free_text (string): the emote/emoji-free concatenated text
         """
@@ -152,7 +150,7 @@ class TextSummary:
                                    if c in string.punctuation])
 
     def set_props(self):
-        """Set the proportion statistics"""
+        """Set the proportion statistics."""
         if self.count['texts'] > 0:
             self.prop['words_per_text'] = self.count['words'] / self.count['texts']
         else:
@@ -172,14 +170,14 @@ class TextSummary:
     def compare_freq(self, other, token):
         """Find differences in word or emoji use frequency.
 
-        Arguments:
+        Args:
             other (TextSummary): TextSummary to compare to.
             token (string): key of the thing to compare (words or emotes)
 
         Returns:
             diff_dict (dict): dictionary where keys correspond to words
-            and values are tuples
-            (total, expected ratio)
+            and values are tuples (total, expected ratio)
+
         """
         diff_dict = dict()
         my_dict = self.occurrence_dicts[token]
@@ -199,19 +197,25 @@ class TextSummary:
     def get_counts(self, word):
         """Find number of occurrences of word in each text.
 
-        Arguments:
+        Args:
             word (string): the word to find.
 
         Returns:
             counts (list): list of integer counts.
+
         """
         return [word_list.count(word) for word_list in
                 self.data['body_words']]
 
     def get_conversations(self, names):
-        """Get a list of conversations
+        """Get a list of conversations.
+
+        Args:
+            names (list): names of senders.
+
         Returns:
             convos (list): a list of dictionaries with conversation information
+
         """
         WINDOW_TIME = pd.Timedelta('30m')  # window in which we count texts
         MIN_WINDOW = 6  # minimum number of texts in window
@@ -255,9 +259,9 @@ class TextSummary:
                             for sender in names]
             words = [convo_slice_person['words'].sum() for convo_slice_person in convo_slices]
             total_words = sum(words)
-            
+
             # find the convo summary
-            slice_text = "\n".join([x for x in convo_slice['body_without_emotes']])
+            slice_text = "\n".join(convo_slice['body_without_emotes'])
             r.extract_keywords_from_text(slice_text)
             topic = r.get_ranked_phrases()[0]
 

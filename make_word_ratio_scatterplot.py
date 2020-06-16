@@ -12,7 +12,7 @@ import plotly.graph_objects as go
 from plotly.offline import plot
 from text_summary import TextSummary
 from file_utils import convert_raw_csv_types
-from config import *
+from config import LOADPATH, COLORS
 
 
 def make_scatter_plots(text_summary_by_person):
@@ -69,7 +69,7 @@ def make_scatter_plots(text_summary_by_person):
     fig.update_xaxes(type='log', title_text=f'{names[0]}: {names[1]} ratio')
     fig.update_yaxes(type='log', title_text='Total')
 
-    plot(fig, auto_open=True)
+    plot(fig, auto_open=True, filename="Word Ration Scatterplot.html")
 
 
 if __name__ == "__main__":
@@ -77,10 +77,6 @@ if __name__ == "__main__":
 
     df = pd.read_csv(LOADPATH, index_col=False)
     df = convert_raw_csv_types(df)
-
-    # create bins and groups
-    df['shifted'] = df['date_sent']-pd.Timedelta(hours=5)
-    grouper1d = pd.Grouper(key='shifted', freq=BIN_FREQ)
 
     names = list(COLORS.keys())
 

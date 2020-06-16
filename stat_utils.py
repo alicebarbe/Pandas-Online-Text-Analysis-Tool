@@ -13,12 +13,19 @@ from math import sqrt, exp
 z0 = 1.96  # 95 percentile of normal distribution
 
 def ratio_conf_bounds(k1, n1, k2, n2):
-    """Returns 95% lower/upper confidence bounds on ratio, as well as mean.
+    """
+    Returns 95% lower/upper confidence bounds on ratio, as well as mean.
     Uses Katz logarithm formula.
 
-    Arguments:
-            k1, k2 (ints): numbers of successes.
-            n1, n2 (ints): total numbers of trials.
+    Args:
+        k1 (int): numbers of successes.
+        n1 (int): total numbers of trials.
+        k2 (ins): numbers of successes.
+        n2 (int): total numbers of trials.
+
+    Returns:
+        floats: Returns 95% lower/upper confidence bounds on ratio, as well as mean.
+
     """
     # continuity corrections
     n1adj = n1+0.5

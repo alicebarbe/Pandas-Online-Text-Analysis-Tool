@@ -4,6 +4,7 @@ Created on Tue Aug  6 16:51:53 2019
 
 @author: dgurevich6
 """
+
 import emoji
 from nltk.tokenize import RegexpTokenizer
 
@@ -13,21 +14,27 @@ EMOTES = [':P', ':p', ':)', ':/', ':(', 'XD', ':D']
 
 
 def isemoji(character):
-    """Returns true if the character is an emoji
+    """
+    Returns true if the character is an emoji
 
     Arguments:
         character (str): the character.
+    
+    Return:
+        bool: if character is an emoji
     """
     return character in emoji.UNICODE_EMOJI
 
 
 def strip_subs(text, substring_list):
-    """Strip a string of the substrings in a list.
+    """
+    Strip a string of the substrings in a list.
     (Assumption: no substring is contained in another)
 
-    Arguments:
+    Args:
         text (str): input string
         substring_list (list): list of undesired substrings
+
     Returns:
         clean_text (str): input text with substrings removed.
     """
@@ -39,9 +46,10 @@ def strip_subs(text, substring_list):
 
 
 def count_word_occurrences(text):
-    """Return a dictionary of words and their number of occurrences.
+    """
+    Return a dictionary of words and their number of occurrences.
 
-    Arguments:
+    Args:
         clean_text (str): string representation of clean text.
 
     Returns:
@@ -56,10 +64,13 @@ def count_word_occurrences(text):
 
 
 def get_words(text, minimal=False):
-    """Return the words comprising a string.
-    Arguments:
+    """
+    Return the words comprising a string.
+
+    Args:
         text (string): the original string
         minimal (boolean): if true, break words at ' and -
+
     Returns:
         word_list (list): a list of words
     """
@@ -74,9 +85,10 @@ def get_words(text, minimal=False):
 
 
 def count_emote_occurrences(raw_text):
-    """Return a dictionary of emoji/emotes and their number of occurrences.
+    """
+    Return a dictionary of emoji/emotes and their number of occurrences.
 
-    Arguments:
+    Args:
         raw_text (str): string representation of raw text
 
     Returns:
@@ -97,9 +109,12 @@ def count_emote_occurrences(raw_text):
 
 
 def remove_emotes(text):
-    """Remove emotes from string and return the cleaned string
-    Arguments:
+    """
+    Remove emotes from string and return the cleaned string
+
+    Args:
         text (string): the original string
+
     Returns:
         text (string): the string with emotes removed
     """
@@ -112,15 +127,17 @@ def remove_emotes(text):
 
 
 def count_emotes(text):
-    """Returns the number of emotes in a string
-    Arguments:
+    """
+    Returns the number of emotes in a string
+
+    Args:
         text(string): the original string
+
     Returns:
         count (int): the number of emotes in the original string
     """
     emote_count = 0
     for emote in EMOTES:
-        emote_count += text.count(emote) 
+        emote_count += text.count(emote)
     emote_count += len([c for c in text if isemoji(c)])
     return emote_count
-        

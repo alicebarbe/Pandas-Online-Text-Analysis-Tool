@@ -9,14 +9,14 @@ import pandas as pd
 
 def convert_raw_csv_types(data):
     """Converts string representations of dates of our standard input dataframe
-    from the CSV to timestamps and returns the dataframe.
+    from the CSV to timestamps and returns the dataframe. Converts all message
+    content to strings.
 
-    Arguments:
-        data (Pandas.DataFrame):
-            raw import converted to CSV.
+    Args:
+        data (Pandas.DataFrame): raw import converted to CSV.
+
     Returns:
-        data (Pandas.DataFrame):
-            import with timestamps converted to the correct type.
+        data (Pandas.DataFrame): import with timestamps converted to the correct type.
     """
     data['date_sent'] = data['date_sent'].map(pd.Timestamp)
     data['body'] = data['body'].map(str)
