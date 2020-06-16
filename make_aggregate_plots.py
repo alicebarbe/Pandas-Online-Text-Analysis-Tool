@@ -13,7 +13,7 @@ import plotly.graph_objects as go
 from plotly.offline import plot
 from text_summary import TextSummary
 from file_utils import convert_raw_csv_types
-from config import *
+from config import COLORS, LOADPATH
 
 
 def plot_totals(ts_dict):
@@ -35,8 +35,7 @@ def plot_totals(ts_dict):
 
     for index in range(number_of_plots):
         for sender in list(COLORS.keys()):
-            fig.append_trace(go.Bar(
-                                    x=[titles[index]],
+            fig.append_trace(go.Bar(x=[titles[index]],
                                     y=[ts_dict[sender].count[total_attrs[index]]],
                                     name=sender,
                                     showlegend=True,
@@ -46,7 +45,7 @@ def plot_totals(ts_dict):
     fig.update_layout(width=600, height=400*number_of_plots, barmode='group')
     fig.update_yaxes(title_text='Total')
 
-    plot(fig, auto_open=True)
+    plot(fig, auto_open=True, filename="Total Stats.html")
 
 def plot_convo_words(convos, names):
     """
@@ -78,11 +77,11 @@ def plot_convo_words(convos, names):
     fig.update_layout(title='Words per conversation',
                       xaxis_title=names[0],
                       yaxis_title=names[1],
-                      yaxis_scaleanchor = "x",
-                      yaxis_scaleratio = 1)
+                      yaxis_scaleanchor="x",
+                      yaxis_scaleratio=1)
     fig.update_xaxes(type='log')
     fig.update_yaxes(type='log')
-    plot(fig, auto_open=True)
+    plot(fig, auto_open=True, filename="Words per Conversation.html")
 
 def plot_convo_length(convos):
     """
@@ -101,11 +100,11 @@ def plot_convo_length(convos):
     fig.update_layout(title='Convo duration vs words',
                       xaxis_title="Duration (minutes)",
                       yaxis_title="Words",
-                      yaxis_scaleanchor = "x",
-                      yaxis_scaleratio = 1)
+                      yaxis_scaleanchor="x",
+                      yaxis_scaleratio=1)
     fig.update_xaxes(type='log')
     fig.update_yaxes(type='log')
-    plot(fig, auto_open=True)
+    plot(fig, auto_open=True, filename="Convo Duration vs Words.html")
 
 if __name__ == "__main__":
     START_TIME = time.time()
@@ -119,8 +118,8 @@ if __name__ == "__main__":
     ts_dict = dict(zip(names, [TextSummary(df_person)
                                for df_person in df_person_list]))
     plot_totals(ts_dict)
-    convos = summary_all.get_conversations(names)
-    plot_convo_words(convos, names)
-    plot_convo_length(convos)
+    conversations = summary_all.get_conversations(names)
+    plot_convo_words(conversations, names)
+    plot_convo_length(conversations)
 
     print("--- %s sec execution time ---" % (time.time() - START_TIME))

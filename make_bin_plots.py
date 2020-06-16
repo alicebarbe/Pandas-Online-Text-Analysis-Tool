@@ -15,18 +15,18 @@ from plotly.offline import plot
 from file_utils import convert_raw_csv_types
 from text_summary_list_utils import create_list_of_summaries_by_person,\
     make_attribute_dict, make_occurrence_dict
-from config import *
+from config import COLORS, LOADPATH, BIN_FREQ, TOKEN_LIST
 
 
-def make_area_plots(indices, dict_of_attribute_dicts):
+def make_area_plots(indices, dict_of_attribute_dicts, filename):
     """
     Make filled area plots of the lists in attribute_dicts, divided by person.
 
-    Arguments:
+    Args:
         indices (list): list of timestamps
-        dict_of_attribute_dicts:
-            key = name of person
-            value = attribute_dict
+        dict_of_attribute_dicts (dict): {key = name of person, value = attribute_dict}
+        filename (str): filename of html file
+
     Returns:
         None. Opens the plot automagically.
     """
@@ -88,8 +88,9 @@ def make_area_plots(indices, dict_of_attribute_dicts):
                              range=[y_ax_mins[subplot_num],
                                     1.05*y_ax_maxs[subplot_num]])
 
-    fig.update_layout(width=1200, height=200*number_of_plots)
-    plot(fig, auto_open=True)
+    fig.update_layout(width=1200, height=max(200*number_of_plots, 300))
+
+    plot(fig, auto_open=True, filename=filename)
 
 
 if __name__ == "__main__":
@@ -117,7 +118,7 @@ if __name__ == "__main__":
                                             for text_summaries in text_summaries_list]))
 
     # create area plots
-    make_area_plots(bin_indices, name_attr_dict_pairs)
+    make_area_plots(bin_indices, name_attr_dict_pairs, "Area Plot.html")
 
     if len(TOKEN_LIST) > 0:
         # create word frequency dictionaries to plot
@@ -125,6 +126,6 @@ if __name__ == "__main__":
                                                for text_summaries in text_summaries_list]))
 
         # create area plots
-        make_area_plots(bin_indices, name_occ_dict_pairs)
+        make_area_plots(bin_indices, name_occ_dict_pairs, "Token Area Plots.html")
 
     print("--- %s sec execution time ---" % (time.time() - START_TIME))

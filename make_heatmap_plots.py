@@ -14,7 +14,7 @@ from plotly.offline import plot
 from file_utils import convert_raw_csv_types
 from text_summary_list_utils import create_list_of_summaries,\
     make_attribute_dict, make_occurrence_dict
-from config import *
+from config import LOADPATH, BIN_FREQ2, BIN_FREQ_HM, OFFSET, TOKEN_LIST
 
 
 def make_heatmap_plot(dates, attribute_dict, title):
@@ -52,7 +52,6 @@ def make_heatmap_plot(dates, attribute_dict, title):
     zdata = np.reshape(zdata, (len(zdata)//BIN_FREQ2, BIN_FREQ2))
 
     color0 = px.colors.sequential.tempo[0]
-    colorend = px.colors.sequential.tempo[-5]
 
     # create heatmap
     fig.add_trace(go.Heatmap(z=zdata,
@@ -75,15 +74,15 @@ def make_heatmap_plot(dates, attribute_dict, title):
         xaxis_title_text='Time of Day',
         plot_bgcolor=color0,
         autosize=False,
-        yaxis_domain = [0,0.85],
-        yaxis2 = dict(domain = [0.85,1]),
-        xaxis_domain = [0,0.85],
-        xaxis2 = dict(domain = [0.85,1]),
-        height = 800,
-        hovermode = 'closest',
-        showlegend = False)
+        yaxis_domain=[0, 0.85],
+        yaxis2=dict(domain=[0.85, 1]),
+        xaxis_domain=[0, 0.85],
+        xaxis2=dict(domain=[0.85, 1]),
+        height=800,
+        hovermode='closest',
+        showlegend=False)
 
-    plot(fig, auto_open=True)
+    plot(fig, auto_open=True, filename=f"{title} Heatmap.html")
 
 
 if __name__ == "__main__":
@@ -114,7 +113,7 @@ if __name__ == "__main__":
     if len(TOKEN_LIST) > 0:
         # create word frequency dictionaries to plot
         occ_dict = make_occurrence_dict(text_summaries, TOKEN_LIST)
-    
+
         # create heatmap plot
         for token in TOKEN_LIST:
             make_heatmap_plot(bin_indices, occ_dict, token)
