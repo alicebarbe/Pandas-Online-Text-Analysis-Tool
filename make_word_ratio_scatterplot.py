@@ -69,7 +69,7 @@ def make_scatter_plots(text_summary_by_person):
     fig.update_xaxes(type='log', title_text=f'{names[0]}: {names[1]} ratio')
     fig.update_yaxes(type='log', title_text='Total')
 
-    plot(fig, auto_open=True, filename="Word Ration Scatterplot.html")
+    plot(fig, auto_open=True, filename="Word Ratio Scatterplot.html")
 
 
 if __name__ == "__main__":
