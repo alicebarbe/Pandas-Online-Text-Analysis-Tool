@@ -1,0 +1,445 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. chat_cleaning package &mdash; POTATo: Pandas Online Text Analysis Tool 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. chat_cleaning_aggregate module" href="chat_cleaning_aggregate.html" />
+    <link rel="prev" title="1. config module" href="config.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> POTATo: Pandas Online Text Analysis Tool
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Modules:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="config.html">1. config module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. chat_cleaning package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">2.1. Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-chat_cleaning.discord">2.2. chat_cleaning.discord module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-chat_cleaning.facebookmessenger">2.3. chat_cleaning.facebookmessenger module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-chat_cleaning.groupme">2.4. chat_cleaning.groupme module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-chat_cleaning.opendb">2.5. chat_cleaning.opendb module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-chat_cleaning.signal">2.6. chat_cleaning.signal module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-chat_cleaning.whatsapp">2.7. chat_cleaning.whatsapp module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-chat_cleaning">2.8. Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="chat_cleaning_aggregate.html">3. chat_cleaning_aggregate module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text_summary.html">4. text_summary module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text_summary_list_utils.html">5. text_summary_list_utils module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_utils.html">6. file_utils module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stat_utils.html">7. stat_utils module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="string_utils.html">8. string_utils module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_aggregate_plots.html">9. make_aggregate_plots module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_bin_plots.html">10. make_bin_plots module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_heatmap_plots.html">11. make_heatmap_plots module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_word_ratio_scatterplot.html">12. make_word_ratio_scatterplot module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">POTATo: Pandas Online Text Analysis Tool</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><span class="section-number">2. </span>chat_cleaning package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/source/chat_cleaning.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="chat-cleaning-package">
+<h1><span class="section-number">2. </span>chat_cleaning package<a class="headerlink" href="#chat-cleaning-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2><span class="section-number">2.1. </span>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-chat_cleaning.discord">
+<span id="chat-cleaning-discord-module"></span><h2><span class="section-number">2.2. </span>chat_cleaning.discord module<a class="headerlink" href="#module-chat_cleaning.discord" title="Permalink to this headline">¶</a></h2>
+<p>Created on Fri May 15 18:05:19 2020</p>
+<p>&#64;author: alice</p>
+<dl class="function">
+<dt id="chat_cleaning.discord.process_discord_chat">
+<code class="sig-prename descclassname">chat_cleaning.discord.</code><code class="sig-name descname">process_discord_chat</code><span class="sig-paren">(</span><em class="sig-param">filepath</em>, <em class="sig-param">order</em>, <em class="sig-param">timezone</em>, <em class="sig-param">pseudos=None</em><span class="sig-paren">)</span><a class="headerlink" href="#chat_cleaning.discord.process_discord_chat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a texts DataFrame from a Discord json file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em>) – filepath to discord json file.</p></li>
+<li><p><strong>order</strong> (<em>list</em>) – order of columns in exported file.</p></li>
+<li><p><strong>timezone</strong> (<em>str</em>) – user timezone at time of export.</p></li>
+<li><p><strong>pseudos</strong> (<em>dict</em>) – dictionary of real names to discord names of form {‘name’: ‘handle’}.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dataframe containing cleaned data.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ddata (pandas.Dataframe)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-chat_cleaning.facebookmessenger">
+<span id="chat-cleaning-facebookmessenger-module"></span><h2><span class="section-number">2.3. </span>chat_cleaning.facebookmessenger module<a class="headerlink" href="#module-chat_cleaning.facebookmessenger" title="Permalink to this headline">¶</a></h2>
+<p>Created on Sun Apr 19 14:13:52 2020</p>
+<p>&#64;author: alice</p>
+<dl class="function">
+<dt id="chat_cleaning.facebookmessenger.process_facebook_chat">
+<code class="sig-prename descclassname">chat_cleaning.facebookmessenger.</code><code class="sig-name descname">process_facebook_chat</code><span class="sig-paren">(</span><em class="sig-param">filepath</em>, <em class="sig-param">order</em>, <em class="sig-param">timezone</em><span class="sig-paren">)</span><a class="headerlink" href="#chat_cleaning.facebookmessenger.process_facebook_chat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a texts DataFrame from all the Facebook Messenger json file in a
+designated folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em>) – folder with facebook chats.</p></li>
+<li><p><strong>order</strong> (<em>list</em>) – order of columns in exported file.</p></li>
+<li><p><strong>timezone</strong> (<em>str</em>) – user timezone at time of export.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dataframe containing cleaned data.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>fbdata (pandas.Dataframe)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="chat_cleaning.facebookmessenger.process_facebook_json">
+<code class="sig-prename descclassname">chat_cleaning.facebookmessenger.</code><code class="sig-name descname">process_facebook_json</code><span class="sig-paren">(</span><em class="sig-param">filepath</em>, <em class="sig-param">order</em>, <em class="sig-param">timezone</em><span class="sig-paren">)</span><a class="headerlink" href="#chat_cleaning.facebookmessenger.process_facebook_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a texts DataFrame from a Facebook Messenger json file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em>) – filepath to fbmessenger json file.</p></li>
+<li><p><strong>order</strong> (<em>list</em>) – order of columns in exported file.</p></li>
+<li><p><strong>timezone</strong> (<em>str</em>) – user timezone at time of export.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dataframe containing cleaned data.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>fbdata (pandas.Dataframe)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-chat_cleaning.groupme">
+<span id="chat-cleaning-groupme-module"></span><h2><span class="section-number">2.4. </span>chat_cleaning.groupme module<a class="headerlink" href="#module-chat_cleaning.groupme" title="Permalink to this headline">¶</a></h2>
+<p>Created on Sat Apr 11 23:53:27 2020</p>
+<p>&#64;author: alice</p>
+<dl class="function">
+<dt id="chat_cleaning.groupme.process_groupme_chat">
+<code class="sig-prename descclassname">chat_cleaning.groupme.</code><code class="sig-name descname">process_groupme_chat</code><span class="sig-paren">(</span><em class="sig-param">filepath</em>, <em class="sig-param">order</em>, <em class="sig-param">timezone</em>, <em class="sig-param">pseudos=None</em><span class="sig-paren">)</span><a class="headerlink" href="#chat_cleaning.groupme.process_groupme_chat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a texts DataFrame from a GroupMe json file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em>) – filepath to groupme json file.</p></li>
+<li><p><strong>order</strong> (<em>list</em>) – order of columns in exported file.</p></li>
+<li><p><strong>timezone</strong> (<em>str</em>) – user timezone at time of export.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dataframe containing cleaned data.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>gmdata (pandas.Dataframe)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-chat_cleaning.opendb">
+<span id="chat-cleaning-opendb-module"></span><h2><span class="section-number">2.5. </span>chat_cleaning.opendb module<a class="headerlink" href="#module-chat_cleaning.opendb" title="Permalink to this headline">¶</a></h2>
+<p>Created on Mon Aug  5 15:07:30 2019</p>
+<p>&#64;author: ABarbe
+Found on: <a class="reference external" href="https://stackoverflow.com/questions/305378/list-of-tables-db-schema-dump-etc-using-the-python-sqlite3-api">https://stackoverflow.com/questions/305378/list-of-tables-db-schema-dump-etc-using-the-python-sqlite3-api</a></p>
+<dl class="function">
+<dt id="chat_cleaning.opendb.to_csv">
+<code class="sig-prename descclassname">chat_cleaning.opendb.</code><code class="sig-name descname">to_csv</code><span class="sig-paren">(</span><em class="sig-param">filepath</em><span class="sig-paren">)</span><a class="headerlink" href="#chat_cleaning.opendb.to_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a .db sqlite file to csv files for each database
+:param filepath: filepath of the database file.
+:type filepath: str</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-chat_cleaning.signal">
+<span id="chat-cleaning-signal-module"></span><h2><span class="section-number">2.6. </span>chat_cleaning.signal module<a class="headerlink" href="#module-chat_cleaning.signal" title="Permalink to this headline">¶</a></h2>
+<p>Created on Sat Apr 11 20:54:49 2020</p>
+<p>&#64;author: alice</p>
+<dl class="function">
+<dt id="chat_cleaning.signal.get_recipient_ids">
+<code class="sig-prename descclassname">chat_cleaning.signal.</code><code class="sig-name descname">get_recipient_ids</code><span class="sig-paren">(</span><em class="sig-param">threaddf</em>, <em class="sig-param">riddf</em><span class="sig-paren">)</span><a class="headerlink" href="#chat_cleaning.signal.get_recipient_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the recipient ids of the participants in a signal chat</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pandas.Dataframe</em>) – dataframe of signal chat (either sms.csv or mms.csv df).</p></li>
+<li><p><strong>riddf</strong> (<em>pandas.Dataframe</em>) – dataframe of Recipient ids (from recipient.csv).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dictionary of recipient IDs to name.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>riddict (dict)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="chat_cleaning.signal.process_signal_mms_chat">
+<code class="sig-prename descclassname">chat_cleaning.signal.</code><code class="sig-name descname">process_signal_mms_chat</code><span class="sig-paren">(</span><em class="sig-param">filepath</em>, <em class="sig-param">ridfilepath</em>, <em class="sig-param">my_name</em>, <em class="sig-param">thread</em>, <em class="sig-param">order</em>, <em class="sig-param">timezone</em><span class="sig-paren">)</span><a class="headerlink" href="#chat_cleaning.signal.process_signal_mms_chat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a texts DataFrame from a Signal csv file (should be mms.csv), the
+export of the mms table in the export database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em>) – filepath to sms csv file.</p></li>
+<li><p><strong>ridfilepath</strong> (<em>str</em>) – filepath to recipient csv file.</p></li>
+<li><p><strong>my_name</strong> (<em>str</em>) – my first name.</p></li>
+<li><p><strong>thread</strong> (<em>int</em>) – thread number of signal conversation.</p></li>
+<li><p><strong>order</strong> (<em>list</em>) – order of columns in exported file.</p></li>
+<li><p><strong>timezone</strong> (<em>str</em>) – user timezone at time of export.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dataframe containing cleaned mms data.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>sdata (pandas.Dataframe)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="chat_cleaning.signal.process_signal_sms_chat">
+<code class="sig-prename descclassname">chat_cleaning.signal.</code><code class="sig-name descname">process_signal_sms_chat</code><span class="sig-paren">(</span><em class="sig-param">filepath</em>, <em class="sig-param">ridfilepath</em>, <em class="sig-param">my_name</em>, <em class="sig-param">thread</em>, <em class="sig-param">order</em>, <em class="sig-param">timezone</em><span class="sig-paren">)</span><a class="headerlink" href="#chat_cleaning.signal.process_signal_sms_chat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a texts DataFrame from a Signal csv file (should be sms.csv), the
+export of the sms table in the export database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em>) – filepath to sms csv file.</p></li>
+<li><p><strong>ridfilepath</strong> (<em>str</em>) – filepath to recipient csv file.</p></li>
+<li><p><strong>my_name</strong> (<em>str</em>) – my first name.</p></li>
+<li><p><strong>thread</strong> (<em>int</em>) – thread number of signal conversation.</p></li>
+<li><p><strong>order</strong> (<em>list</em>) – order of columns in exported file.</p></li>
+<li><p><strong>timezone</strong> (<em>str</em>) – user timezone at time of export.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dataframe containing cleaned sms data.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>sdata (pandas.Dataframe)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-chat_cleaning.whatsapp">
+<span id="chat-cleaning-whatsapp-module"></span><h2><span class="section-number">2.7. </span>chat_cleaning.whatsapp module<a class="headerlink" href="#module-chat_cleaning.whatsapp" title="Permalink to this headline">¶</a></h2>
+<p>Created on Sat Apr 11 22:59:42 2020</p>
+<p>&#64;author: alice</p>
+<dl class="function">
+<dt id="chat_cleaning.whatsapp.process_whatsapp_chat">
+<code class="sig-prename descclassname">chat_cleaning.whatsapp.</code><code class="sig-name descname">process_whatsapp_chat</code><span class="sig-paren">(</span><em class="sig-param">filepath</em>, <em class="sig-param">order</em>, <em class="sig-param">pseudos=None</em><span class="sig-paren">)</span><a class="headerlink" href="#chat_cleaning.whatsapp.process_whatsapp_chat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a texts DataFrame from a whatsapp txt file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em>) – filepath to whatsapp txt file.</p></li>
+<li><p><strong>order</strong> (<em>list</em>) – order of columns in exported file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dataframe containing cleaned data.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>wadata (pandas.Dataframe)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-chat_cleaning">
+<span id="module-contents"></span><h2><span class="section-number">2.8. </span>Module contents<a class="headerlink" href="#module-chat_cleaning" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="chat_cleaning_aggregate.html" class="btn btn-neutral float-right" title="3. chat_cleaning_aggregate module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="config.html" class="btn btn-neutral float-left" title="1. config module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Alice Barbe, Daniel Gurevich
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
