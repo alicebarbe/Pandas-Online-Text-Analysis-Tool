@@ -7,3 +7,7 @@ __pycache__/
 debug.log
 temp-plot.html
 test.py
+docs_source/_build
+docs_source/_static
+docs_source/_templates
+*.html
