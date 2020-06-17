@@ -12,6 +12,7 @@ Welcome to POTATo: Pandas Online Text Analysis Tool's documentation!
    :caption: Contents:
 
    source/chat_format
+   source/config_file
 
 Introduction
 ============
@@ -74,7 +75,7 @@ packages are needed:
 
 * pandas
 * numpy
-* yaml
+* pyyaml
 * plotly
 * emoji
 * nltk

@@ -1,0 +1,290 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Config File &mdash; POTATo: Pandas Online Text Analysis Tool 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="config module" href="config.html" />
+    <link rel="prev" title="Chat Format" href="chat_format.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> POTATo: Pandas Online Text Analysis Tool
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="chat_format.html">Chat Format</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Config File</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modules:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="config.html">config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chat_cleaning.html">2. chat_cleaning package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chat_cleaning_aggregate.html">3. chat_cleaning_aggregate module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text_summary.html">4. text_summary module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text_summary_list_utils.html">5. text_summary_list_utils module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_utils.html">6. file_utils module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stat_utils.html">7. stat_utils module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="string_utils.html">8. string_utils module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_aggregate_plots.html">9. make_aggregate_plots module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_bin_plots.html">10. make_bin_plots module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_heatmap_plots.html">11. make_heatmap_plots module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_word_ratio_scatterplot.html">12. make_word_ratio_scatterplot module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">POTATo: Pandas Online Text Analysis Tool</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Config File</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/source/config_file.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="config-file">
+<h1>Config File<a class="headerlink" href="#config-file" title="Permalink to this headline">¶</a></h1>
+<p>The config file (.txt) enables users to easily set paramaters without needing
+to really modify the Python code. Be sure to point to it in config.py.</p>
+<p>The parameters are described below and are optional unless otherwise specified:</p>
+<p>Only specify the chat parsing parameters applicable. At least one of
+SIGNAL_SMS_CSV+SIGNAL_MMS_CSV+SIGNAL_RECIPIENT_CSV, WHATSAPP_TXT, GROUPME_JSON,
+DISCORD_JSON, or FB_FOLDER must be specified.</p>
+<p>For Signal chat parsing:</p>
+<ul class="simple">
+<li><p><em>SIGNAL_DB</em>: location of decrypted Signal .db file. This is used by opendb.py
+to unpack signal messages.</p></li>
+<li><p><em>SIGNAL_SMS_CSV</em>: location of Signal sms.csv file (enter after exporting
+using opendb.py).</p></li>
+<li><p><em>SIGNAL_MMS_CSV</em>: location of Signal mms.csv file (enter after exporting
+using opendb.py).</p></li>
+<li><p><em>SIGNAL_RECIPIENT_CSV</em>: location of Signal recipient.csv file (enter after
+exporting using opendb.py).</p></li>
+<li><p><em>MY_NAME</em>: enter your name here, surrounded by quotes. Signal doesn’t know
+your name.</p></li>
+<li><p><em>THREAD</em>: integer thread number of the relevant Signal chat. This can be
+by looking in for the number in the Thread column of relevant messages in
+the sms/mms csv files.</p></li>
+</ul>
+<p>For other chat parsing:</p>
+<ul class="simple">
+<li><p><em>WHATSAPP_TXT</em>: location of WhatsApp .txt export.</p></li>
+<li><p><em>WHATSAPP_PSEUDO</em>: dictionary of the form {“Bob”: “Bobby”} where
+“Bobby” is Bob’s WhatsApp name. This is necessary if exporting
+across multiple platforms and names/handles need to be matched up.</p></li>
+<li><p><em>GROUPME_JSON</em>: location of GroupMe .json export.</p></li>
+<li><p><em>GROUPME_PSEUDO</em>: dictionary of the form {“Bob”: “Bobby”} where
+“Bobby” is Bob’s GroupMe name. This is necessary if exporting
+across multiple platforms and names/handles need to be matched up.</p></li>
+<li><p><em>DISCORD_JSON</em>: location of Discord .json export.</p></li>
+<li><p><em>DISCORD_PSEUDOS</em>: dictionary of the form {“Bob”: “bobthediscordguy”} where
+“bobthediscordguy” is Bob’s discord handle. This is necessary if exporting
+across multiple platforms and names/handles need to be matched up.</p></li>
+<li><p><em>FB_FOLDER</em>: location of folder containing Facebook Messenger .json exports.
+FB Messenger generally exports a “messages” folder within which there is an
+“inbox” folder within which there are many message folders, one for each
+chat (and two per chat in the case of chats containing multimedia). The
+folder to specify here is of the form messages/inbox/bobsmith_dy28ddkp0.</p></li>
+</ul>
+<p>The PSEUDO dictionaries are optional and will perform a search-replace of the
+value (pseudonym) by the key (actual name), so it is only necessary to specify
+for users whose names don’t match up across platforms.</p>
+<p>For main functionality:</p>
+<ul class="simple">
+<li><p><em>LOADPATH</em> (required): this is where the aggregate cleaned chat csv file will
+be stored at the end of running chat_cleaning_aggregate.py, and where the
+plotting programs will fetch data.</p></li>
+<li><p><em>COLORS</em>: a dictionary of the form {“Alice”: “red”, “Bob”: “blue”}, where the
+colors are standard matplotlib colors. If not specified, default colors will
+be applied.</p></li>
+<li><p><em>TOKEN_LIST</em>: a list of strings to plot the frequency/usage of in
+make_bin_plots and make_heatmap_plots, of the form [“hi”, “work”]. Optional.</p></li>
+<li><p><em>OFFSET</em> (required for running make_heatmap_plots): the hour of the first
+message sent in the history. <em>TO-DO: Automate this away</em></p></li>
+<li><p><em>TIMEZONE</em>: standard string representation of timezone to do the analysis in.
+The default is ‘US/Eastern’.</p></li>
+</ul>
+<p>Paramaters unlikely to be useful, but just in case:</p>
+<ul class="simple">
+<li><p><em>BIN_FREQ</em>: default is ‘1d’ for 1 day. This is the size of the binning used
+in make_bin_plots (i.e. the resolution to plot data points). Other useful
+bin sizes could be ‘1W’ for weekly or ‘1M’ for monthly. A list of valid
+options can be found <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#offset-aliases">here</a>.</p></li>
+<li><p><em>BIN_FREQ_HM</em>: default is ‘1h’ for 1 hour. This is the bin size for the
+heatmap, i.e. the unit for the x-axis.</p></li>
+<li><p><em>BIN_FREQ_2</em>: default is 24. Number of bins of size BIN_FREQ_HM to include in
+one heatmap row.</p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="config.html" class="btn btn-neutral float-right" title="config module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="chat_format.html" class="btn btn-neutral float-left" title="Chat Format" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Alice Barbe, Daniel Gurevich
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
