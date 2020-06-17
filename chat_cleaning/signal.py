@@ -20,8 +20,6 @@ def get_recipient_ids(threaddf, riddf):
         riddict (dict): dictionary of recipient IDs to name.
 
     """
-    # get messages only from correct thread
-    #threaddf = df[df.loc[:, 'thread_id'] == thread]
     # get unique recipient id's of the thread
     rids = threaddf['address'].unique()
     # find corresponding names in recipient list - get list of first names only
