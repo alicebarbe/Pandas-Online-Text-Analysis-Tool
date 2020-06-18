@@ -1,0 +1,8 @@
+emoji==0.5.4
+nltk==3.4.5
+numpy==1.18.1
+pandas==1.0.3
+pathlib==1.0.1
+plotly==4.6.0
+PyYAML==5.3.1
+rake-nltk==1.0.4
