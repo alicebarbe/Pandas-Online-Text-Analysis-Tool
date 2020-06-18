@@ -22,7 +22,6 @@ BIN_FREQ = '1d'
 # heatmap plot settings
 BIN_FREQ_HM = '1h'
 BIN_FREQ2 = 24
-OFFSET = 0
 
 # initialize order
 ORDER = ['date_sent', 'platform', 'sender', 'body']
@@ -35,8 +34,12 @@ globals().update(config_dict)
 
 # test if colors are defined - if not, get list of names and assign them colors
 try:
+    df = pd.read_csv(LOADPATH, index_col=False)
+    if 'OFFSET' not in globals():
+        # find offset: used in heatmap to displace first point. Default here
+        # to hour of first text
+        OFFSET = int(df.loc[0, 'date_sent'][11:13])
     if 'COLORS' not in globals():
-        df = pd.read_csv(LOADPATH, index_col=False)
         names = list(df['sender'].unique())
         colors = DEFAULT_PLOTLY_COLORS[0:len(names)]
         COLORS = dict(zip(names, colors))
