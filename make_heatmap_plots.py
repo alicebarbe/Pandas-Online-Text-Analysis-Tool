@@ -9,7 +9,6 @@ import time
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
-import plotly.express as px
 from plotly.offline import plot
 from file_utils import convert_raw_csv_types
 from text_summary_list_utils import create_list_of_summaries,\
@@ -33,7 +32,7 @@ def make_heatmap_plot(dates, attribute_dict, title):
 
     """
     # calculate offset to pad the end
-    end_offset = BIN_FREQ2 - (len(dates) + OFFSET)%BIN_FREQ2
+    end_offset = BIN_FREQ2 - (len(dates) + OFFSET) % BIN_FREQ2
 
     # calculate offsets and create date list
     index_start_offset = OFFSET * pd.Timedelta(BIN_FREQ_HM)
@@ -50,8 +49,6 @@ def make_heatmap_plot(dates, attribute_dict, title):
     zdata = ([0] * OFFSET) + attribute_list + ([0] * end_offset)
     # reshape to heatmap size
     zdata = np.reshape(zdata, (len(zdata)//BIN_FREQ2, BIN_FREQ2))
-
-    color0 = px.colors.sequential.tempo[0]
 
     # create heatmap
     fig.add_trace(go.Heatmap(z=zdata,
@@ -72,7 +69,6 @@ def make_heatmap_plot(dates, attribute_dict, title):
     fig.update_layout(
         title_text=title,
         xaxis_title_text='Time of Day',
-        plot_bgcolor=color0,
         autosize=False,
         yaxis_domain=[0, 0.85],
         yaxis2=dict(domain=[0.85, 1]),
