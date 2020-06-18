@@ -31,8 +31,8 @@ platform exports.
 The processes for how to convert an export into this format varies from
 platform to platform and is described below.
 
-JSON exports
-------------
+JSON exports (FB Messenger, Groupme, Discord)
+---------------------------------------------
 
 It’s most common for chat apps to export histories to JSON files: in
 this category, we’ve written chat parsers for Facebook Messenger,

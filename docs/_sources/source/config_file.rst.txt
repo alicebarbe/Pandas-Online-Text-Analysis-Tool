@@ -2,7 +2,10 @@ Config File
 ===========
 
 The config file (.txt) enables users to easily set paramaters without needing
-to really modify the Python code. Be sure to point to it in config.py.
+to really modify the Python code. Be sure to point to it in config.py. If using
+relative file locations in config.txt, make them relative to the root
+POTATo directory (wherever config.py is), NOT to where config.txt is stored.
+This is because the variables will be imported in config.py.
 
 The parameters are described below and are optional unless otherwise specified:
 
@@ -52,7 +55,7 @@ for users whose names don't match up across platforms.
 
 For main functionality:
 
-* *LOADPATH* (required): this is where the aggregate cleaned chat csv file will
+* *LOADPATH* (**required**): this is where the aggregate cleaned chat csv file will
   be stored at the end of running chat_cleaning_aggregate.py, and where the
   plotting programs will fetch data.
 * *COLORS*: a dictionary of the form {"Alice": "red", "Bob": "blue"}, where the
@@ -60,8 +63,6 @@ For main functionality:
   be applied.
 * *TOKEN_LIST*: a list of strings to plot the frequency/usage of in
   make_bin_plots and make_heatmap_plots, of the form ["hi", "work"]. Optional.
-* *OFFSET* (required for running make_heatmap_plots): the hour of the first
-  message sent in the history. *TO-DO: Automate this away*
 * *TIMEZONE*: standard string representation of timezone to do the analysis in.
   The default is 'US/Eastern'.
 
@@ -73,7 +74,85 @@ Paramaters unlikely to be useful, but just in case:
   options can be found here_.
 * *BIN_FREQ_HM*: default is '1h' for 1 hour. This is the bin size for the
   heatmap, i.e. the unit for the x-axis.
-* *BIN_FREQ_2*: default is 24. Number of bins of size BIN_FREQ_HM to include in
+* *BIN_FREQ2*: default is 24. Number of bins of size BIN_FREQ_HM to include in
   one heatmap row.
+* *OFFSET*: default is the hour of the first text. This is used to set the offset
+  of the first cell in the heatmaps, in units of BIN_FREQ_HM - change only if
+  changing BIN_FREQ_HM and BIN_FREQ2. For example, if you set BIN_FREQ_HM='1d'
+  and BIN_FREQ2=7 for a day per cell and a week per row, and you like your
+  rows to begin on a Sunday, but the first day you chatted was a Wednesday,
+  then set OFFSET to 4.
   
 .. _here: https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#offset-aliases
+
+Example
+-------
+In this example, Alice and Bob communicate using Signal, Discord, and Facebook
+messenger. Alice's Discord handle is aliceondiscord and Bob's Discord handle is
+bobondiscord. Alice is running POTATo.
+
+Alice's file structure is
+
+::
+
+    Pandas-Online-Text-Analysis-Tool
+    |
+    |___data
+    |   |___signal
+    |   |   |   signal.db
+    |   |   |   ...
+    |   |   |   sms.csv
+    |   |   |   mms.csv
+    |   |   |   recipient.csvDirect Messages - Private - bobondiscord [239102849302938122].json
+    |   |   |   ...
+    |   |   |
+    |   |___bobsmith_30_a8dj37js
+    |   |   |   message_1.json
+    |   |   |   message_2.json
+    |   |   |
+    |   |___discord_dms
+    |   |   |   Direct Messages - Private - bobondiscord [239102849302938122].json
+    |   |   |
+    |   |   data.csv
+    |   |
+    |   config
+    |   |   config.txt
+    |   |
+    |   chat_cleaning_aggregate.py
+    |   config.py
+    |   ...
+
+Note that the relative file paths are relative to the root directory, not the
+config folder.
+
+::
+
+    # For signal parsing
+    MY_NAME : "Alice"  # name of signal owner
+    THREAD : 8  # signal THREAD number
+    
+    # data files
+    SIGNAL_DB : 'data/signal/signal.db'
+    SIGNAL_SMS_CSV : 'data/signal/sms.csv'
+    SIGNAL_MMS_CSV : 'data/signal/mms.csv'
+    SIGNAL_RECIPIENT_CSV : 'data/signal/recipient.csv'
+    DISCORD_JSON : 'data/discord_dms/Direct Messages - Private - bobondiscord [239102849302938122].json'
+    DISCORD_PSEUDOS : {'Alice': 'aliceondiscord', 'Bob': 'bobondiscord'}
+    FB_FOLDER: "data/bobsmith_30_a8dj37js"
+    
+    LOADPATH : 'data/data.csv'
+    
+    # plot settings
+    COLORS : {'Alice': 'red', 'Bob': 'blue'}
+    
+    # list of words/emotes to search
+    TOKEN_LIST : ['hi', 'work', 'funny', ':)']
+    
+If Alice wants to make a heatmap with days as cells and weeks as rows, add:
+
+::
+
+    BIN_FREQ_HM: '1d'
+    BIN_FREQ2: 7
+    OFFSET: 3
+    

@@ -11,6 +11,7 @@ Welcome to POTATo: Pandas Online Text Analysis Tool's documentation!
    :hidden:
    :caption: Contents:
 
+   source/exporting_chats
    source/chat_format
    source/config_file
 

@@ -1,0 +1,322 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Exporting Chats &mdash; POTATo: Pandas Online Text Analysis Tool 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chat Format" href="chat_format.html" />
+    <link rel="prev" title="Welcome to POTATo: Pandas Online Text Analysis Tool’s documentation!" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> POTATo: Pandas Online Text Analysis Tool
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Exporting Chats</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#facebook-messenger">Facebook Messenger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#groupme">GroupMe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#whatsapp">WhatsApp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#discord">Discord</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#signal">Signal</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="chat_format.html">Chat Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config_file.html">Config File</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modules:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="config.html">config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chat_cleaning.html">chat_cleaning package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chat_cleaning_aggregate.html">chat_cleaning_aggregate module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text_summary.html">text_summary module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text_summary_list_utils.html">text_summary_list_utils module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_utils.html">file_utils module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stat_utils.html">stat_utils module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="string_utils.html">string_utils module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_aggregate_plots.html">make_aggregate_plots module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_bin_plots.html">make_bin_plots module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_heatmap_plots.html">make_heatmap_plots module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_word_ratio_scatterplot.html">make_word_ratio_scatterplot module</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">POTATo: Pandas Online Text Analysis Tool</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Exporting Chats</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/source/exporting_chats.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="exporting-chats">
+<h1>Exporting Chats<a class="headerlink" href="#exporting-chats" title="Permalink to this headline">¶</a></h1>
+<p>It is recommended to place chat export files in a folder called “data”, placed
+in the root POTATo directory. This is not strictly necessary - the config file
+can point to files in any location - but it makes life easier.</p>
+<div class="section" id="facebook-messenger">
+<h2>Facebook Messenger<a class="headerlink" href="#facebook-messenger" title="Permalink to this headline">¶</a></h2>
+<p>To export Facebook Messenger chats:</p>
+<ol class="arabic simple">
+<li><p>Log into Facebook. In the upper right hand corner, find <em>Settings&amp;Privacy &gt; Settings</em>.</p></li>
+<li><p>In the <em>Your Facebook Information</em> tab, click <em>Download Your Information</em>.</p></li>
+<li><p>Change Format option to JSON and set Media Quality to Low for a faster download.
+Click Deselect All and select only the <em>Messages</em> box.</p></li>
+<li><p>Click <em>Create File</em> and wait. You will get a notification when the export
+is finished - this may take several hours. It will be available under
+<em>Available Copies</em> for a few days. Click <em>Download</em> and extract the contents
+of the resulting zipped folder.</p></li>
+<li><p>The contents are a <em>messages</em> folder. Open it and open the <em>inbox</em> folder in it.
+The folders in <em>inbox</em> each correspond to a chat. In chats with multimedia
+content, there are two folders - one named in camel case and one named with only
+lowercase letters. The camel case folder contains media, the lowercase letter
+folder contains the message json folders.</p></li>
+<li><p>Copy the lowercase letter folder (bobsmith_3_s2ekwl39s0) to a data folder in
+the root POTATo directory.
+Be mindful to copy the folder, not just its contents (<em>message_1.json, etc.</em>).</p></li>
+</ol>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>messages
+|___inbox
+|   |___bobsmith_3_s2ekwl39s0  &lt;-- COPY THIS FOLDER
+|   |   |   message_1.json
+|   |   |   message_2.json
+|   |___BobSmith_3_S2eKWl39s0
+|   |   |___files
+|   |   |___gifs
+|   |   |___photos
+|   |   |___videos
+|___message_requests
+|___stickers_used
+</pre></div>
+</div>
+</div>
+<div class="section" id="groupme">
+<h2>GroupMe<a class="headerlink" href="#groupme" title="Permalink to this headline">¶</a></h2>
+<p>To export GroupMe chats:</p>
+<ol class="arabic simple">
+<li><p>Log into GroupMe at groupme.com. Click on your profile picture on the upper
+left hand corner. Click on <em>Export My Data</em>.</p></li>
+<li><p>Click on <em>Create Export</em>. Select <em>Message Data</em> and click <em>Next</em>.</p></li>
+<li><p>Select the relevant chats to export and click <em>Next</em>. Wait for the email
+notification. The Export will be avaiable to download for a day in the
+<em>Export My Data</em> page - download it and extract the contents of the
+resulting zipped folder.</p></li>
+<li><p>There will be one folder per chat. The <em>message.json</em> file in each chat folder
+is the chat message export for that chat. Copy it and place it in a data
+folder in the root POTATo directory.</p></li>
+</ol>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>392830401
+|___likes
+|   |   everyone.json
+|   |   for_me.json
+|   |   mine.json
+|   conversation.json
+|   message.json  &lt;-- COPY THIS FILE
+</pre></div>
+</div>
+</div>
+<div class="section" id="whatsapp">
+<h2>WhatsApp<a class="headerlink" href="#whatsapp" title="Permalink to this headline">¶</a></h2>
+<p>To export a WhatsApp chat:</p>
+<ol class="arabic simple">
+<li><p>Open the WhatsApp app on your phone. Open a relevant chat and click on the
+three dots in upper right hand corner, select <em>More</em>, select <em>Export chat</em>.</p></li>
+<li><p>If prompted, select <em>Without media</em> to speed up the process. Select a
+convenient way to transfer it to your computer (emailing or whatsapping it
+to yourself, for example).</p></li>
+<li><p>Save the resulting .txt file in a data folder in the root POTATo directory.</p></li>
+</ol>
+</div>
+<div class="section" id="discord">
+<h2>Discord<a class="headerlink" href="#discord" title="Permalink to this headline">¶</a></h2>
+<p>Discord currently does not support directly exporting chats.
+The easiest way to do it seems to be through Alexey Golub’s (&#64;Tyrrz) amazing
+library, DiscordChatExporter: <a class="reference external" href="https://github.com/Tyrrrz/DiscordChatExporter">https://github.com/Tyrrrz/DiscordChatExporter</a></p>
+<p>The procedure is fairly simple and very well documented in his wiki.
+If using the GUI, select JSON as export format and “yyyy-MM-dd HH:mm:ss tt”
+as the time format.
+If using the CLI, add the following options:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>-f Json --dateformat &quot;yyyy-MM-dd HH:mm:ss tt&quot;
+</pre></div>
+</div>
+</div>
+<div class="section" id="signal">
+<h2>Signal<a class="headerlink" href="#signal" title="Permalink to this headline">¶</a></h2>
+<p>The procedure for exporting Signal chats is somewhat complicated, due to the
+fact that Signal does not provide a built-in way to export chats or decrypt
+their backups.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="chat_format.html" class="btn btn-neutral float-right" title="Chat Format" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to POTATo: Pandas Online Text Analysis Tool’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Alice Barbe, Daniel Gurevich
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

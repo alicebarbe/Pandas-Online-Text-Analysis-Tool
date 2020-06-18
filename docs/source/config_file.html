@@ -82,23 +82,27 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="exporting_chats.html">Exporting Chats</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chat_format.html">Chat Format</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Config File</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Config File</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Modules:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="config.html">config module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chat_cleaning.html">2. chat_cleaning package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chat_cleaning_aggregate.html">3. chat_cleaning_aggregate module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="text_summary.html">4. text_summary module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="text_summary_list_utils.html">5. text_summary_list_utils module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="file_utils.html">6. file_utils module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stat_utils.html">7. stat_utils module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="string_utils.html">8. string_utils module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="make_aggregate_plots.html">9. make_aggregate_plots module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="make_bin_plots.html">10. make_bin_plots module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="make_heatmap_plots.html">11. make_heatmap_plots module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="make_word_ratio_scatterplot.html">12. make_word_ratio_scatterplot module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chat_cleaning.html">chat_cleaning package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chat_cleaning_aggregate.html">chat_cleaning_aggregate module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text_summary.html">text_summary module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text_summary_list_utils.html">text_summary_list_utils module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_utils.html">file_utils module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stat_utils.html">stat_utils module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="string_utils.html">string_utils module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_aggregate_plots.html">make_aggregate_plots module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_bin_plots.html">make_bin_plots module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_heatmap_plots.html">make_heatmap_plots module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_word_ratio_scatterplot.html">make_word_ratio_scatterplot module</a></li>
 </ul>
 
             
@@ -166,7 +170,10 @@
   <div class="section" id="config-file">
 <h1>Config File<a class="headerlink" href="#config-file" title="Permalink to this headline">¶</a></h1>
 <p>The config file (.txt) enables users to easily set paramaters without needing
-to really modify the Python code. Be sure to point to it in config.py.</p>
+to really modify the Python code. Be sure to point to it in config.py. If using
+relative file locations in config.txt, make them relative to the root
+POTATo directory (wherever config.py is), NOT to where config.txt is stored.
+This is because the variables will be imported in config.py.</p>
 <p>The parameters are described below and are optional unless otherwise specified:</p>
 <p>Only specify the chat parsing parameters applicable. At least one of
 SIGNAL_SMS_CSV+SIGNAL_MMS_CSV+SIGNAL_RECIPIENT_CSV, WHATSAPP_TXT, GROUPME_JSON,
@@ -212,7 +219,7 @@ value (pseudonym) by the key (actual name), so it is only necessary to specify
 for users whose names don’t match up across platforms.</p>
 <p>For main functionality:</p>
 <ul class="simple">
-<li><p><em>LOADPATH</em> (required): this is where the aggregate cleaned chat csv file will
+<li><p><em>LOADPATH</em> (<strong>required</strong>): this is where the aggregate cleaned chat csv file will
 be stored at the end of running chat_cleaning_aggregate.py, and where the
 plotting programs will fetch data.</p></li>
 <li><p><em>COLORS</em>: a dictionary of the form {“Alice”: “red”, “Bob”: “blue”}, where the
@@ -220,8 +227,6 @@ colors are standard matplotlib colors. If not specified, default colors will
 be applied.</p></li>
 <li><p><em>TOKEN_LIST</em>: a list of strings to plot the frequency/usage of in
 make_bin_plots and make_heatmap_plots, of the form [“hi”, “work”]. Optional.</p></li>
-<li><p><em>OFFSET</em> (required for running make_heatmap_plots): the hour of the first
-message sent in the history. <em>TO-DO: Automate this away</em></p></li>
 <li><p><em>TIMEZONE</em>: standard string representation of timezone to do the analysis in.
 The default is ‘US/Eastern’.</p></li>
 </ul>
@@ -233,9 +238,80 @@ bin sizes could be ‘1W’ for weekly or ‘1M’ for monthly. A list of valid
 options can be found <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#offset-aliases">here</a>.</p></li>
 <li><p><em>BIN_FREQ_HM</em>: default is ‘1h’ for 1 hour. This is the bin size for the
 heatmap, i.e. the unit for the x-axis.</p></li>
-<li><p><em>BIN_FREQ_2</em>: default is 24. Number of bins of size BIN_FREQ_HM to include in
+<li><p><em>BIN_FREQ2</em>: default is 24. Number of bins of size BIN_FREQ_HM to include in
 one heatmap row.</p></li>
+<li><p><em>OFFSET</em>: default is the hour of the first text. This is used to set the offset
+of the first cell in the heatmaps, in units of BIN_FREQ_HM - change only if
+changing BIN_FREQ_HM and BIN_FREQ2. For example, if you set BIN_FREQ_HM=’1d’
+and BIN_FREQ2=7 for a day per cell and a week per row, and you like your
+rows to begin on a Sunday, but the first day you chatted was a Wednesday,
+then set OFFSET to 4.</p></li>
 </ul>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>In this example, Alice and Bob communicate using Signal, Discord, and Facebook
+messenger. Alice’s Discord handle is aliceondiscord and Bob’s Discord handle is
+bobondiscord. Alice is running POTATo.</p>
+<p>Alice’s file structure is</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Pandas-Online-Text-Analysis-Tool
+|
+|___data
+|   |___signal
+|   |   |   signal.db
+|   |   |   ...
+|   |   |   sms.csv
+|   |   |   mms.csv
+|   |   |   recipient.csvDirect Messages - Private - bobondiscord [239102849302938122].json
+|   |   |   ...
+|   |   |
+|   |___bobsmith_30_a8dj37js
+|   |   |   message_1.json
+|   |   |   message_2.json
+|   |   |
+|   |___discord_dms
+|   |   |   Direct Messages - Private - bobondiscord [239102849302938122].json
+|   |   |
+|   |   data.csv
+|   |
+|   config
+|   |   config.txt
+|   |
+|   chat_cleaning_aggregate.py
+|   config.py
+|   ...
+</pre></div>
+</div>
+<p>Note that the relative file paths are relative to the root directory, not the
+config folder.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># For signal parsing
+MY_NAME : &quot;Alice&quot;  # name of signal owner
+THREAD : 8  # signal THREAD number
+
+# data files
+SIGNAL_DB : &#39;data/signal/signal.db&#39;
+SIGNAL_SMS_CSV : &#39;data/signal/sms.csv&#39;
+SIGNAL_MMS_CSV : &#39;data/signal/mms.csv&#39;
+SIGNAL_RECIPIENT_CSV : &#39;data/signal/recipient.csv&#39;
+DISCORD_JSON : &#39;data/discord_dms/Direct Messages - Private - bobondiscord [239102849302938122].json&#39;
+DISCORD_PSEUDOS : {&#39;Alice&#39;: &#39;aliceondiscord&#39;, &#39;Bob&#39;: &#39;bobondiscord&#39;}
+FB_FOLDER: &quot;data/bobsmith_30_a8dj37js&quot;
+
+LOADPATH : &#39;data/data.csv&#39;
+
+# plot settings
+COLORS : {&#39;Alice&#39;: &#39;red&#39;, &#39;Bob&#39;: &#39;blue&#39;}
+
+# list of words/emotes to search
+TOKEN_LIST : [&#39;hi&#39;, &#39;work&#39;, &#39;funny&#39;, &#39;:)&#39;]
+</pre></div>
+</div>
+<p>If Alice wants to make a heatmap with days as cells and weeks as rows, add:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>BIN_FREQ_HM: &#39;1d&#39;
+BIN_FREQ2: 7
+OFFSET: 3
+</pre></div>
+</div>
+</div>
 </div>
 
 
