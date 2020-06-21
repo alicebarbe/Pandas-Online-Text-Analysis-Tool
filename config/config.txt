@@ -1,0 +1,35 @@
+# This is an example config file. Modify it to match your file structure and parameters.
+# Be sure that config.py is pointing to this file if you change its name/location.
+
+# For Signal Messenger parsing - delete these if not using Signal
+MY_NAME : "Alice" # name of signal owner
+THREAD : 59 # signal THREAD number
+SIGNAL_DB : 'data/signal/signal.db'
+SIGNAL_SMS_CSV : 'data/signal/sms.csv'
+SIGNAL_MMS_CSV : 'data/signal/mms.csv'
+SIGNAL_RECIPIENT_CSV : 'data/signal/recipient.csv'
+
+# for WhatsApp parsing - delete these if not using WhatsApp
+WHATSAPP_TXT : 'data/whatsapphistory.txt'
+# WHATSAPP_PSEUDOS can be added if necessary
+
+# for GroupMe parsing - delete these if not using GroupMe
+GROUPME_JSON : 'data/groupmehistory.json'
+# GROUPME_PSEUDOS can be added if necessary
+
+# for Discord parsing - delete these if not using Discord
+DISCORD_JSON : 'data/discord_dms/Direct Messages - Private - bobondiscord [239102849302938122].json'
+DISCORD_PSEUDOS : {'Alice': 'aliceondiscord', 'Bob': 'bobondiscord'}
+
+# for Facebook Messenger parsing - delete these if not using Facebook Messenger
+FB_FOLDER: "data/bobsmith_30_a8dj37js"
+
+# make this whatever you want or leave it as is - this is where the cleaned data will be stored
+# THIS IS REQUIRED
+LOADPATH : 'data/data.csv'
+
+# plot settings
+COLORS : {'Alice': 'red', 'Bob': 'blue'}
+
+# list of words/emotes to search
+TOKEN_LIST : ['hi', 'work', 'funny', ':)']

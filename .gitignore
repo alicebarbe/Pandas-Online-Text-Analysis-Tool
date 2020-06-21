@@ -2,7 +2,7 @@
 .csv
 .directory
 data/
-config/
+myconfig/
 __pycache__/
 debug.log
 temp-plot.html

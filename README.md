@@ -1,6 +1,8 @@
 # POTATo: Pandas-Online-Text-Analysis-Tool
 Panda Online Text Analysis Tool
 
+Find documentation and extensive guides here: https://alicebarbe.github.io/Pandas-Online-Text-Analysis-Tool/
+
 ## Introduction
 
 This collection of Python visualizations and analyses of chat messaging
