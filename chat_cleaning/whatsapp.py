@@ -6,6 +6,7 @@ Created on Sat Apr 11 22:59:42 2020
 """
 
 import pandas as pd
+import regex
 
 
 def process_whatsapp_chat(filepath, order, pseudos=None):
@@ -20,16 +21,16 @@ def process_whatsapp_chat(filepath, order, pseudos=None):
         wadata (pandas.Dataframe): dataframe containing cleaned data.
 
     """
-    # input raw whatsapp text file
-    warawdata = pd.read_csv(filepath, sep='\n', header=None, index_col=False,
-                            engine='python')
-    warawdata.columns = ['line']
+    # some regex to account for messages taking up multiple lines
+    regstr = r"(?<datetime>\d{1,2}\/\d{1,2}\/\d{1,4}, \d{1,2}:\d{1,2}( (?i)[ap]m)*) - (?<name>.(?::\s*\w+)*|[\w\s]+?)(?:\s+(?<action>joined|left|was removed|changed the (?:subject to \"\w+\"|group's icon))|:\s(?<message>(?:.+|\n(?!\d{1,2}\/\d{1,2}\/\d{1,4}, \d{1,2}:\d{1,2}( (?i)[ap]m)*))+))"
 
-    # eliminate non actual messages - real messages have colons
-    wadata = warawdata.loc[warawdata['line'].str.count(':') >= 2, :]
-    # split date
-    wadata[['date_sent', 'body']] = wadata['line'].str.split(r' - ', 1, expand=True)
-    wadata[['senderfull', 'body']] = wadata['body'].str.split(r': ', 1, expand=True)
+    with open(filepath) as f:
+        file_string = f.read()
+
+    wadata = pd.DataFrame(regex.findall(regstr, file_string))
+
+    wadata.columns = ['date_sent', '', 'senderfull', '', 'body', '']
+
     # remove last names
     wadata['sender'] = wadata['senderfull'].str.split().str.get(0)
     if pseudos is not None:
@@ -38,7 +39,7 @@ def process_whatsapp_chat(filepath, order, pseudos=None):
 
     # drop now useless columns and blank rows
     wadata = wadata[~wadata['sender'].isna()]
-    wadata = wadata.drop(columns=['line', 'senderfull'])
+    wadata = wadata.drop(columns=['senderfull', ''])
 
     # change date to timestamp format
     wadata['date_sent'] = wadata['date_sent'].map(pd.Timestamp)
@@ -47,7 +48,6 @@ def process_whatsapp_chat(filepath, order, pseudos=None):
     wadata['platform'] = 'whatsapp'
 
     # replace <Media omitted> with blank space
-    image_mask = wadata['body'] == "<Media omitted>"
     wadata = wadata.replace("<Media omitted>", " ")
 
     # reorder columns
