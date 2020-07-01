@@ -266,7 +266,25 @@ If using the CLI, add the following options:</p>
 <h2>Signal<a class="headerlink" href="#signal" title="Permalink to this headline">¶</a></h2>
 <p>The procedure for exporting Signal chats is somewhat complicated, due to the
 fact that Signal does not provide a built-in way to export chats or decrypt
-their backups.</p>
+their backups. We have found that this is the simplest way to do it:</p>
+<p>Getting the backup:</p>
+<ol class="arabic simple">
+<li><p>Follow the instructions here to create a Signal backup: <a class="reference external" href="https://support.signal.org/hc/en-us/articles/360007059752-Backup-and-Restore-Messages">https://support.signal.org/hc/en-us/articles/360007059752-Backup-and-Restore-Messages</a></p></li>
+<li><p>Remember to save the passcode! It will be necessary to decrypt the backup.</p></li>
+<li><p>Find the backup in your phone file system (generally in a Signal/Backup folder) and transfer it to your computer.</p></li>
+</ol>
+<p>Decrypting the backup:</p>
+<p>There are multiple Signal backup decrypting libraries on Github, but of all the ones we’ve tried, Tim van der Molen’s Sigbak is by far the easiest and fastest:
+<a class="reference external" href="https://www.kariliq.nl/sigbak/">https://www.kariliq.nl/sigbak/</a> (also available on Github: <a class="reference external" href="https://github.com/tbvdm/sigbak">https://github.com/tbvdm/sigbak</a>). His documentation is excellent and we recommend that you check it out. For the purposes of POTATo, the following command is sufficient once installation is complete (which should be as simple as just running <code class="code docutils literal notranslate"><span class="pre">make</span></code> and then <code class="code docutils literal notranslate"><span class="pre">make</span> <span class="pre">install</span></code> in the repository after downloading/cloning it):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sigback sqlite mysignal.backup signal.db
+</pre></div>
+</div>
+<p>Easily find your thread ID numbers (an identifier for each conversation) by typing:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sigbak threads mysignal.backup
+</pre></div>
+</div>
+<p>The <code class="code docutils literal notranslate"><span class="pre">-p</span> <span class="pre">my_passcode.txt</span></code> flag can be quite useful in both cases, where the my_passcode.txt is the 15-digit decryption passcode.</p>
+<p>The resulting signal.db file is used in chat_cleaning/opendb.py which unpacks tables inside into csv files, among which are recipient.csv, sms.csv, and mms.csv.</p>
 </div>
 </div>
 

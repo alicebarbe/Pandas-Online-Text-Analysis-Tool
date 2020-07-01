@@ -103,5 +103,29 @@ Signal
 
 The procedure for exporting Signal chats is somewhat complicated, due to the
 fact that Signal does not provide a built-in way to export chats or decrypt
-their backups.
+their backups. We have found that this is the simplest way to do it:
 
+Getting the backup:
+
+1. Follow the instructions here to create a Signal backup: https://support.signal.org/hc/en-us/articles/360007059752-Backup-and-Restore-Messages
+2. Remember to save the passcode! It will be necessary to decrypt the backup.
+3. Find the backup in your phone file system (generally in a Signal/Backup folder) and transfer it to your computer.
+
+Decrypting the backup:
+
+There are multiple Signal backup decrypting libraries on Github, but of all the ones we've tried, Tim van der Molen's Sigbak is by far the easiest and fastest: 
+https://www.kariliq.nl/sigbak/ (also available on Github: https://github.com/tbvdm/sigbak). His documentation is excellent and we recommend that you check it out. For the purposes of POTATo, the following command is sufficient once installation is complete (which should be as simple as just running :code:`make` and then :code:`make install` in the repository after downloading/cloning it):
+
+::
+
+    sigback sqlite mysignal.backup signal.db
+
+Easily find your thread ID numbers (an identifier for each conversation) by typing:
+
+::
+
+    sigbak threads mysignal.backup
+    
+The :code:`-p my_passcode.txt` flag can be quite useful in both cases, where the my_passcode.txt is the 15-digit decryption passcode.
+
+The resulting signal.db file is used in chat_cleaning/opendb.py which unpacks tables inside into csv files, among which are recipient.csv, sms.csv, and mms.csv.
