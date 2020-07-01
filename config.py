@@ -44,5 +44,6 @@ try:
         colors = DEFAULT_PLOTLY_COLORS[0:len(names)]
         COLORS = dict(zip(names, colors))
 except:
-    print("Warning: LOADFILE has not been created yet. COLORS failed to be defined.")
+    #print("Warning: LOADFILE has not been created yet. COLORS/OFFSET failed to be defined.")
+    pass
 

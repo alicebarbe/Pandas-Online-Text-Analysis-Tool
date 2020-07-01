@@ -1,6 +1,7 @@
 .ipynb_checkpoints/
 .csv
 .directory
+.zip
 data/
 myconfig/
 __pycache__/

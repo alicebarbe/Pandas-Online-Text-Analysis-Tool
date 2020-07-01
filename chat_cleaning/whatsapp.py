@@ -22,7 +22,7 @@ def process_whatsapp_chat(filepath, order, pseudos=None):
 
     """
     # some regex to account for messages taking up multiple lines
-    regstr = r"(?<datetime>\d{1,2}\/\d{1,2}\/\d{1,4}, \d{1,2}:\d{1,2}( (?i)[ap]m)*) - (?<name>.(?::\s*\w+)*|[\w\s]+?)(?:\s+(?<action>joined|left|was removed|changed the (?:subject to \"\w+\"|group's icon))|:\s(?<message>(?:.+|\n(?!\d{1,2}\/\d{1,2}\/\d{1,4}, \d{1,2}:\d{1,2}( (?i)[ap]m)*))+))"
+    regstr = r"(?<datetime>\d{1,2}\/\d{1,2}\/\d{1,4}, \d{1,2}:\d{1,2}( (?i)[ap]m)*) - (?<name>.(?::\+*\-*\s*\w+)*|[\w\s\+\-]+?)(?:\s+(?<action>joined|left|was removed|changed the (?:subject to \"\w+\"|group's icon))|:\s(?<message>(?:.+|\n(?!\d{1,2}\/\d{1,2}\/\d{1,4}, \d{1,2}:\d{1,2}( (?i)[ap]m)*))+))"
 
     with open(filepath) as f:
         file_string = f.read()
