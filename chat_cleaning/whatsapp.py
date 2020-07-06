@@ -49,6 +49,9 @@ def process_whatsapp_chat(filepath, order, pseudos=None):
 
     # replace <Media omitted> with blank space
     wadata = wadata.replace("<Media omitted>", " ")
+    # remove "missed voice call" and "missed video call" tags
+    wadata = wadata[wadata['body'] != 'Missed voice call']
+    wadata = wadata[wadata['body'] != 'Missed video call']
 
     # reorder columns
     wadata = wadata[order]
