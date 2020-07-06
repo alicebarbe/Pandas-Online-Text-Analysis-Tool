@@ -30,6 +30,8 @@ def make_scatter_plots(text_summary_by_person):
     MIN_WORD_OCCUR = 10  # minimum number of occurrences to be plotted
     MIN_EMOTE_OCCUR = 5
 
+    names = list(COLORS.keys())
+
     diffs = dict()  # stores dictionaries with key word and value (total, ratio)
 
     # make dictionaries
@@ -52,20 +54,25 @@ def make_scatter_plots(text_summary_by_person):
     subplot = 0
     for token_type, diff_dict in diffs.items():
 
-        hover_words = list(diff_dict.keys())
-        y = [v[0] for v in diff_dict.values()]
-        x = [v[1] for v in diff_dict.values()]
+        x, y, customdata = [], [], []
+        for word, v in diff_dict.items():
+            y.append(v[0])
+            x.append(v[1])
+            customdata.append([word, names[0], v[2], names[1], v[3]])
 
-        fig.append_trace(go.Scatter(hovertext=hover_words,
-                                    x=x,
+        fig.append_trace(go.Scatter(x=x,
                                     y=y,
+                                    customdata=customdata,
+                                    hovertemplate="<b>%{customdata[0]}</b><br>" +\
+                                                  "Total: %{y} <br>Ratio: %{x:.2f}<br>" +\
+                                                  "%{customdata[1]}: %{customdata[2]}<br>" +\
+                                                  "%{customdata[3]}: %{customdata[4]}<extra></extra>",
                                     showlegend=False,
                                     mode='markers'),
                          subplot+1, 1)
         subplot += 1
 
     fig.update_layout(width=1200, height=600*number_of_plots)
-    names = list(COLORS.keys())
     fig.update_xaxes(type='log', title_text=f'{names[0]}: {names[1]} ratio')
     fig.update_yaxes(type='log', title_text='Total')
 

@@ -191,7 +191,7 @@ class TextSummary:
             n1 = self.count[token]
             n2 = other.count[token]
             _, mean, _ = ratio_conf_bounds(k1, n1, k2, n2)
-            diff_dict[word] = (k1+k2, mean)
+            diff_dict[word] = (k1+k2, mean, k1, k2)
         return diff_dict
 
     def get_counts(self, word):
