@@ -1,6 +1,6 @@
 emoji==0.5.4
 nltk==3.4.5
-numpy==1.18.1
+numpy==1.22.0
 pandas==1.0.3
 pathlib==1.0.1
 plotly==4.6.0
